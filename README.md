@@ -18,7 +18,7 @@ Blue and Pink Synth Editor will always be free to use in this way.
 If you are not a programmer, you can download a pre-compiled version at https://scottlumsden.com/blueandpinksyntheditor. 
 
 The pre-compiled version runs as a time-limited fully-functional demo.
-You can purchase an activation code for $20 to remove the time limit.
+You can purchase an activation code to remove the time limit.
 It's a one-time purchase and your code will work for all future versions of Blue and Pink Synth Editor.
 
 

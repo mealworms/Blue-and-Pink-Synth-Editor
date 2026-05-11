@@ -83,7 +83,7 @@ Clone the Blue-and-Pink-Synth-Editor repository to your home directory
 ## 4. Install nymphes-osc in the virtual environment as an editable package
 - macOS and Linux: `$ pip install -e ~/nymphes-osc`
 - Windows: `$ pip install -e <full absolute path to nymphes-osc folder>`
-  - ie: `$ pip install -e C:\Users\jtpac\nymphes-osc`
+  - ie: `$ pip install -e C:\Users\jtpack\nymphes-osc`
 
 ### Windows: Manual Installation of python-rtmidi
 Make sure you have Cmake installed

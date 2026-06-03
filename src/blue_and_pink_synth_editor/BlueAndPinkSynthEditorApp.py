@@ -7,7 +7,6 @@ from pathlib import Path
 import os
 import threading
 import configparser
-import netifaces
 import platform
 import subprocess
 import glob
@@ -1265,12 +1264,12 @@ class BlueAndPinkSynthEditorApp(App):
         else:
             #
             # Listener host is not specified.
-            # Try to automatically determine the local ip address
+            # Bind to loopback so the OSC port is not exposed to the LAN.
             #
 
-            in_host = self._get_local_ip_address()
-            self._nymphes_osc_listener_host = in_host
-            Logger.info(f'[NYMPHES_OSC][listener_host] not specified. Will use detected local ip address: {in_host}')
+            self._nymphes_osc_listener_host = '127.0.0.1'
+            Logger.info(
+                f'[NYMPHES_OSC][listener_host] not specified. Using {self._nymphes_osc_listener_host}')
 
         self._nymphes_osc_listener_port = int(config['NYMPHES_OSC']['listener port'])
 
@@ -1383,38 +1382,6 @@ class BlueAndPinkSynthEditorApp(App):
             self._save_config_file(_filepath)
 
         Clock.schedule_once(lambda dt: work_func(dt, filepath), 0)
-
-    @staticmethod
-    def _get_local_ip_address():
-        """
-        Return the local IP address as a string.
-        If no address other than 127.0.0.1 can be found, then
-        return '127.0.0.1'
-        :return: str
-        """
-        # Get a list of all network interfaces
-        interfaces = netifaces.interfaces()
-
-        for iface in interfaces:
-            try:
-                # Get the addresses associated with the interface
-                addresses = netifaces.ifaddresses(iface)
-
-                # Extract the IPv4 addresses (if available)
-                if netifaces.AF_INET in addresses:
-                    ip_info = addresses[netifaces.AF_INET][0]
-                    ip_address = ip_info['addr']
-                    if ip_address != '127.0.0.1':
-                        return ip_address
-
-            except Exception as e:
-                Logger.critical(f'Failed to detect local IP address ({e})')
-
-                # Default to localhost
-                return '127.0.0.1'
-
-        # If we get here, then no IP Address other than 127.0.0.1 was found
-        return '127.0.0.1'
 
     def _start_nymphes_osc_listener(self):
         """

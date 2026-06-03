@@ -2554,7 +2554,7 @@ class BlueAndPinkSynthEditorApp(App):
             os.startfile(self._presets_directory_path)
 
         elif platform.system() == "Linux":
-            os.system(f"xdg-open {self._presets_directory_path}")
+            subprocess.call(["xdg-open", str(self._presets_directory_path)])
 
         else:
             self.show_error_dialog_on_main_thread(f'Unknown operating system', platform.system())
@@ -2595,7 +2595,7 @@ class BlueAndPinkSynthEditorApp(App):
             os.startfile(logs_dir_path)
 
         elif platform.system() == "Linux":
-            os.system(f"xdg-open {logs_dir_path}")
+            subprocess.call(["xdg-open", str(logs_dir_path)])
 
         else:
             self.show_error_dialog_on_main_thread(f'Unknown operating system', platform.system())

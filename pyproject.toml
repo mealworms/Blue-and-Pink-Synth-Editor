@@ -17,7 +17,6 @@ classifiers = [
 keywords = ["MIDI", "OSC", "Nymphes"]
 dependencies = [
     "python-osc",
-    "netifaces",
     "kivy[base]",
     "zeroconf",
     "pyinstaller",
